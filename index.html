@@ -324,6 +324,25 @@
     gap: 8px;
   }
 
+  .project-img {
+    width: 100%;
+    border-radius: 3px;
+    border: 1px solid var(--border);
+    margin-bottom: 14px;
+    display: block;
+    object-fit: cover;
+    max-height: 380px;
+  }
+
+  .img-caption {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--muted);
+    margin-top: -10px;
+    margin-bottom: 12px;
+    text-align: center;
+  }
+
   @media (max-width: 560px) {
     .name { font-size: 36px; }
     .stats { grid-template-columns: 1fr; }
@@ -372,6 +391,8 @@
         <div class="card-date">Oct 2024 – May 2025</div>
       </div>
       <div class="card-org">Swarm Intelligence Lab · RailVision Autonomous Drone Project · New Brunswick, NJ</div>
+      <img class="project-img" src="Screenshot 2026-06-02 133440.png" alt="RailVision 4+1 autonomous quadplane with wiring harness, ESCs, motors, and Taranis X7 controller">
+      <div class="img-caption">RailVision 4+1 autonomous quadplane — fully wired prototype with Taranis X7 controller</div>
       <div class="card-body">
         <ul>
           <li>Designed a ResNet-34 vegetation detection model achieving ~97% accuracy for onboard perception on an autonomous quadplane</li>
