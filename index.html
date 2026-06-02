@@ -296,7 +296,23 @@
     border-color: #b8b6ae;
   }
 
-  .github-link {
+  .code-btn {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text);
+    background: var(--tag-bg);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 6px 14px;
+    text-decoration: none;
+    transition: background 0.15s, border-color 0.15s;
+    display: inline-block;
+  }
+
+  .code-btn:hover {
+    background: var(--border);
+    border-color: #b8b6ae;
+  }
     font-family: var(--mono);
     font-size: 12px;
     color: var(--muted);
@@ -430,6 +446,9 @@
         <span class="tag">Python</span>
         <span class="tag">Raspberry Pi</span>
         <span class="tag">ResNet-34</span>
+      </div>
+      <div style="margin-top: 14px;">
+        <a class="code-btn" href="https://github.com/charlee2225/charlee2225.github.io/tree/main/railsvision" target="_blank">View Code →</a>
       </div>
     </div>
 
