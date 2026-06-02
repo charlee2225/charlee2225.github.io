@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Charles J. Lee — ECE Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #f7f6f2;
+    --surface: #ffffff;
+    --border: #e2e0d8;
+    --text: #1a1917;
+    --muted: #6b6960;
+    --accent: #1a1917;
+    --tag-bg: #eeecea;
+    --tag-text: #4a4844;
+    --mono: 'DM Mono', monospace;
+    --sans: 'DM Sans', sans-serif;
+    --serif: 'DM Serif Display', serif;
+  }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 3rem 2rem 6rem;
+  }
+
+  header {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 2.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .name {
+    font-family: var(--serif);
+    font-size: 48px;
+    line-height: 1.1;
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
+    color: var(--text);
+  }
+
+  .tagline {
+    font-size: 15px;
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+  }
+
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .meta a, .meta span {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+    text-decoration: none;
+    background: var(--tag-bg);
+    padding: 4px 10px;
+    border-radius: 2px;
+    border: 1px solid var(--border);
+    transition: color 0.15s, border-color 0.15s;
+  }
+
+  .meta a:hover {
+    color: var(--text);
+    border-color: var(--text);
+  }
+
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 3rem;
+  }
+
+  .stat {
+    background: var(--surface);
+    padding: 1.25rem 1.5rem;
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: var(--serif);
+    font-size: 32px;
+    color: var(--text);
+    display: block;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .stat-label {
+    font-size: 11px;
+    color: var(--muted);
+    font-family: var(--mono);
+    line-height: 1.4;
+  }
+
+  section {
+    margin-bottom: 3rem;
+  }
+
+  .section-heading {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-heading::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 10px;
+    transition: border-color 0.15s;
+  }
+
+  .card:hover { border-color: #b8b6ae; }
+
+  .card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 3px;
+    gap: 12px;
+  }
+
+  .card-title {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  .card-date {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .card-org {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 10px;
+    font-family: var(--mono);
+  }
+
+  .card-body {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  .card-body ul {
+    padding-left: 14px;
+  }
+
+  .card-body li {
+    margin-bottom: 4px;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 12px;
+  }
+
+  .tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--tag-text);
+    background: var(--tag-bg);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 2px 8px;
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .skill-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1rem 1.25rem;
+  }
+
+  .skill-cat {
+    font-family: var(--mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+
+  .skill-list {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.9;
+  }
+
+  .edu-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1.25rem 1.5rem;
+  }
+
+  .edu-school {
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 3px;
+  }
+
+  .edu-degree {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+
+  .edu-detail {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .coursework {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 8px;
+    line-height: 1.7;
+  }
+
+  .contact-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .contact-btn {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background 0.15s, border-color 0.15s;
+  }
+
+  .contact-btn:hover {
+    background: var(--tag-bg);
+    border-color: #b8b6ae;
+  }
+
+  .github-link {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    transition: color 0.15s, border-color 0.15s;
+  }
+
+  .github-link:hover {
+    color: var(--text);
+    border-color: var(--text);
+  }
+
+  footer {
+    margin-top: 4rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  @media (max-width: 560px) {
+    .name { font-size: 36px; }
+    .stats { grid-template-columns: 1fr; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .card-top { flex-direction: column; gap: 2px; }
+    footer { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <h1 class="name">Charles J. Lee</h1>
+    <p class="tagline">Electrical & Computer Engineering — Rutgers University Honors College</p>
+    <div class="meta">
+      <span>Fort Lee, NJ</span>
+      <a href="mailto:charles22lee25@gmail.com">charles22lee25@gmail.com</a>
+      <a href="tel:5512438658">(551) 243-8658</a>
+      <a href="https://github.com/charlee2225" target="_blank">github.com/charlee2225</a>
+      <span>Graduating May 2027</span>
+    </div>
+  </header>
+
+  <div class="stats">
+    <div class="stat">
+      <span class="stat-num">3.86</span>
+      <span class="stat-label">GPA<br>Dean's List every semester</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">2</span>
+      <span class="stat-label">Engineering internships<br>completed</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">4+</span>
+      <span class="stat-label">Hardware and software<br>projects</span>
+    </div>
+  </div>
+
+  <section>
+    <div class="section-heading">Experience</div>
+
+    <div class="card">
+      <div class="card-top">
+        <div class="card-title">Hardware Engineering Intern</div>
+        <div class="card-date">Oct 2024 – May 2025</div>
+      </div>
+      <div class="card-org">Swarm Intelligence Lab · RailVision Autonomous Drone Project · New Brunswick, NJ</div>
+      <div class="card-body">
+        <ul>
+          <li>Designed a ResNet-34 vegetation detection model achieving ~97% accuracy for onboard perception on an autonomous quadplane</li>
+          <li>Integrated real-time inference on Raspberry Pi 4B with Pixhawk/ArduPilot flight stack for autonomous decision-making</li>
+          <li>Designed PCB in KiCad for power distribution board with regulated 5V and 12V rails supporting 7 onboard interfaces</li>
+          <li>Reduced debug turnaround by 40% through structured oscilloscope and logic analyzer fault isolation</li>
+          <li>Created wiring diagrams, validation checklists, and setup instructions across 3 prototype build cycles</li>
+        </ul>
+      </div>
+      <div class="tags">
+        <span class="tag">Embedded Systems</span>
+        <span class="tag">Computer Vision</span>
+        <span class="tag">PCB Design</span>
+        <span class="tag">ArduPilot</span>
+        <span class="tag">KiCad</span>
+        <span class="tag">Python</span>
+        <span class="tag">Raspberry Pi</span>
+        <span class="tag">ResNet-34</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <div class="card-title">Software Engineering Intern</div>
+        <div class="card-date">May 2025 – Aug 2025</div>
+      </div>
+      <div class="card-org">AI & Data Science Collaboratory · Machine Learning for Climate Downscaling · Piscataway, NJ</div>
+      <div class="card-body">
+        <ul>
+          <li>Built Python/Linux workflows processing 36 years of climate data across 5 Global Climate Models and 6 variables</li>
+          <li>Automated metric generation for a TensorFlow pipeline trained for 160 epochs and ~120,000 iterations</li>
+          <li>Supported GPU-accelerated training on TACC Frontera HPC cluster</li>
+          <li>Benchmarked model outputs using RMSE and MAE comparisons against bilinear interpolation baselines</li>
+        </ul>
+      </div>
+      <div class="tags">
+        <span class="tag">TensorFlow</span>
+        <span class="tag">Python</span>
+        <span class="tag">Linux</span>
+        <span class="tag">NumPy</span>
+        <span class="tag">Scikit-learn</span>
+        <span class="tag">Matplotlib</span>
+        <span class="tag">HPC</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <div class="card-title">Electronics Lab Technician</div>
+        <div class="card-date">Sep 2023 – May 2025</div>
+      </div>
+      <div class="card-org">Rutgers ECE Department · Piscataway, NJ</div>
+      <div class="card-body">
+        <ul>
+          <li>Supported 4 semesters of electronics labs assisting 20+ students with bench setup and circuit debugging</li>
+          <li>Performed soldering and rework on 15+ circuits and components to restore lab hardware and reduce downtime</li>
+        </ul>
+      </div>
+      <div class="tags">
+        <span class="tag">Soldering</span>
+        <span class="tag">Oscilloscope</span>
+        <span class="tag">DMM</span>
+        <span class="tag">Circuit Debugging</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-heading">Projects</div>
+
+    <div class="card">
+      <div class="card-top">
+        <div class="card-title">Camera-Assisted Ball Launch Platform</div>
+        <div class="card-date">Jan – Mar 2026</div>
+      </div>
+      <div class="card-body">
+        Developed a vision-guided embedded targeting platform with servo actuation, startup self-tests, and safety interlocks for repeatable system validation. Improved targeting accuracy from 56% to 82% across 30 trials through iterative tuning of vision-guided control loops. Added diagnostics for startup faults, actuator current behavior, and targeting latency.
+      </div>
+      <div class="tags">
+        <span class="tag">Computer Vision</span>
+        <span class="tag">Servo Control</span>
+        <span class="tag">Embedded C</span>
+        <span class="tag">Diagnostics</span>
+        <span class="tag">Python</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <div class="card-title">RC Car Pit Crew Diagnostics Console</div>
+        <div class="card-date">Sep – Nov 2025</div>
+      </div>
+      <div class="card-body">
+        Built an Arduino-based pre-run diagnostics console to validate battery health, motor-driver response, and sensor status before operation. Wrote firmware to sample voltage/current, poll IMU data, and verify UART/I2C device connectivity during startup checks. Detected 8 of 10 injected failure cases before operation using startup diagnostic checks.
+      </div>
+      <div class="tags">
+        <span class="tag">Arduino</span>
+        <span class="tag">IMU</span>
+        <span class="tag">UART/I2C</span>
+        <span class="tag">Firmware</span>
+        <span class="tag">Python Logging</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-heading">Skills</div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-cat">Autonomy & AI</div>
+        <div class="skill-list">Computer vision · TensorFlow<br>ResNet · Real-time inference<br>NumPy · Scikit-learn · Matplotlib<br>ArduPilot / Pixhawk<br>HPC workflows</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-cat">Embedded / Hardware</div>
+        <div class="skill-list">Raspberry Pi · Arduino<br>PCB design · KiCad · LTspice<br>UART / I2C / SPI validation<br>Sensor bring-up · Wiring<br>Soldering / rework</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-cat">Test & Debug</div>
+        <div class="skill-list">Oscilloscope · Logic analyzer<br>DMM · Bench power supplies<br>Structured bring-up<br>Fault isolation<br>Serial logging</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-cat">Programming / Tools</div>
+        <div class="skill-list">Python · C/C++ · MATLAB<br>Linux · Git · Java<br>AutoCAD · SolidWorks<br>Microsoft Office<br>KiCad · LTspice</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-heading">Education</div>
+    <div class="edu-card">
+      <div class="edu-school">Rutgers University — Honors College</div>
+      <div class="edu-degree">B.S. Electrical and Computer Engineering · Minor in Computer Science · May 2027</div>
+      <div class="edu-detail">GPA 3.86 &nbsp;·&nbsp; Dean's List all semesters</div>
+      <div class="coursework">Linear Systems & Signals · Digital Signal Processing · Digital Electronics · Electronic Devices · Digital Logic Design · Computer Architecture & Assembly · Data Structures · Artificial Intelligence · Principles of EE I–II</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-heading">Contact</div>
+    <div class="contact-row">
+      <a class="contact-btn" href="mailto:charles22lee25@gmail.com">charles22lee25@gmail.com</a>
+      <a class="contact-btn" href="tel:5512438658">(551) 243-8658</a>
+      <a class="contact-btn" href="https://github.com/charlee2225" target="_blank">github.com/charlee2225</a>
+    </div>
+  </section>
+
+  <footer>
+    <span>Charles J. Lee · ECE Portfolio</span>
+    <a class="github-link" href="https://github.com/charlee2225" target="_blank">github.com/charlee2225</a>
+  </footer>
+
+</div>
+</body>
+</html>
