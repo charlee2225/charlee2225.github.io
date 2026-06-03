@@ -491,6 +491,11 @@
       <div style="margin-top: 14px;">
         <a class="code-btn" href="https://github.com/charlee2225/charlee2225.github.io/tree/main/climate-downscaling" target="_blank">View Code &rarr;</a>
       </div>
+      <div style="margin-top: 14px;">
+        <p style="font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 8px;">Presented at Rutgers Aresty Research Center for Undergraduates</p>
+        <img src="climate-poster.jpg" alt="Machine Learning Approaches to Climate Data Downscaling and Bias Correction — Aresty Research Poster" onclick="openLightbox(this.src)" style="width: 100%; border-radius: 3px; border: 1px solid var(--border); display: block; cursor: zoom-in; transition: opacity 0.15s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
+        <p style="font-family: var(--mono); font-size: 10px; color: var(--muted); margin-top: 6px; text-align: center;">Click to enlarge</p>
+      </div>
     </div>
 
     <div class="card">
@@ -545,6 +550,8 @@
         <div class="card-title">RC Car Pit Crew Diagnostics Console</div>
         <div class="card-date">Sep &ndash; Nov 2025</div>
       </div>
+      <img class="project-img" src="rccar.png" alt="Custom PCB with ATmega microcontroller, LiPo battery, motor driver, and full wiring harness inside RC car chassis">
+      <div class="img-caption">Custom diagnostics PCB with ATmega microcontroller, motor driver, LiPo battery, and onboard sensors</div>
       <div class="card-body">
         Built an Arduino-based pre-run diagnostics console to validate battery health, motor-driver response, and sensor status before operation. Wrote firmware to sample voltage/current, poll IMU data, and verify UART/I2C device connectivity during startup checks. Detected 8 of 10 injected failure cases before operation using startup diagnostic checks.
         <p class="writeup">This project started as a practical problem: I was tired of discovering mid-run that something was wrong with the car. Building a structured diagnostic console forced me to think carefully about failure modes and how to detect them programmatically before they cause issues. Writing firmware that checks I2C device connectivity, validates IMU data at rest, and measures motor driver current response taught me that reliability engineering is its own discipline. Detecting 8 of 10 injected failure cases was encouraging but the 2 misses were just as instructive. They pointed to edge cases in my voltage threshold logic that I had not anticipated, and that kind of honest evaluation of what your system does and does not catch is something I carry into every project now.</p>
@@ -609,5 +616,24 @@
   </footer>
 
 </div>
+  <div id="lightbox" onclick="closeLightbox()" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:9999; cursor:zoom-out; align-items:center; justify-content:center; padding: 2rem;">
+    <img id="lightbox-img" src="" alt="Enlarged poster" style="max-width:100%; max-height:90vh; border-radius:4px; box-shadow: 0 20px 60px rgba(0,0,0,0.5);">
+  </div>
+
+  <script>
+    function openLightbox(src) {
+      const lb = document.getElementById('lightbox');
+      document.getElementById('lightbox-img').src = src;
+      lb.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      document.getElementById('lightbox').style.display = 'none';
+      document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeLightbox();
+    });
+  </script>
 </body>
 </html>
