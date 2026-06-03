@@ -1,7 +1,6 @@
 # RailVision — Vegetation Detection
 
-**Swarm Intelligence Lab, Rutgers University**
-October 2024 – May 2025
+**Swarm Intelligence Lab**
 
 Binary image classifier that detects vegetation overgrowth on rail tracks for an autonomous 4+1 quadplane drone. Trained on 400+ images and achieved approximately 97% validation accuracy.
 
@@ -33,7 +32,6 @@ The RailVision drone autonomously inspects rail corridors and flags sections whe
 |------|-------------|
 | `train.py` | Training script — fine-tunes ResNet-34 on labeled dataset |
 | `infer.py` | Inference script — runs model on saved images or frame folders |
-| `rail_overgrowth_classifier.pth` | Trained model weights |
 
 ---
 
