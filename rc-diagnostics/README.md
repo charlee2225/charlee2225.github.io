@@ -26,8 +26,8 @@ If all checks pass the system arms and begins continuous telemetry logging. If a
 
 | File | Description |
 |------|-------------|
-| `rc_diagnostics.ino` | Arduino Nano firmware — startup checks and telemetry loop |
-| `logger.py` | Python serial logger — captures CSV telemetry for post-run analysis |
+| `rc_diagnostics.ino` | Arduino Nano firmware: startup checks and telemetry loop |
+| `logger.py` | Python serial logger: captures CSV telemetry for post-run analysis |
 
 ---
 
