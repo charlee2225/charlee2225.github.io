@@ -30,8 +30,8 @@ The RailVision drone autonomously inspects rail corridors and flags sections whe
 
 | File | Description |
 |------|-------------|
-| `train.py` | Training script — fine-tunes ResNet-34 on labeled dataset |
-| `infer.py` | Inference script — runs model on saved images or frame folders |
+| `train.py` | Training script - fine-tunes ResNet-34 on labeled dataset |
+| `infer.py` | Inference script - runs model on saved images or frame folders |
 
 ---
 
