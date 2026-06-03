@@ -1,40 +1,13 @@
-/*
- * RC Car Pit Crew Diagnostics Console
- * Rutgers University ECE · Sep – Nov 2025
- *
- * Pre-run diagnostics firmware for an RC car. Runs structured
- * startup checks before allowing the car to operate, validating:
- *   - Battery voltage and current draw (INA219)
- *   - IMU health and motion data (MPU-6050 via I2C)
- *   - Motor driver response (PWM output check)
- *   - UART and I2C device connectivity
- *
- * Hardware:
- *   Arduino Nano
- *   INA219 current/voltage sensor (I2C addr 0x40)
- *   MPU-6050 IMU (I2C addr 0x68)
- *   Motor driver (PWM on pin D9)
- *   Status LED (D13)
- *   Serial output at 115200 baud
- *
- * Results are logged over Serial and summarized at the end.
- * System will not arm if any critical check fails.
- */
-
 #include <Wire.h>
 #include <Adafruit_INA219.h>
 #include <MPU6050.h>
 
-// ---------------------------------------------------------------------
 // Pin assignments
-// ---------------------------------------------------------------------
 #define MOTOR_PWM_PIN   9
 #define STATUS_LED_PIN  13
 #define READY_LED_PIN   12   // Green = armed, Red = fault
 
-// ---------------------------------------------------------------------
 // Thresholds
-// ---------------------------------------------------------------------
 #define BATT_VOLTAGE_MIN     6.5f    // V  — minimum acceptable battery voltage
 #define BATT_VOLTAGE_MAX    12.6f    // V  — maximum (full charge 3S LiPo)
 #define BATT_CURRENT_MAX     5.0f    // A  — max idle current draw
@@ -43,15 +16,10 @@
 #define IMU_ACCEL_MIN       -2.0f    // g  — min plausible accel reading
 #define IMU_ACCEL_MAX        2.0f    // g  — max plausible accel reading (at rest)
 
-// ---------------------------------------------------------------------
 // I2C addresses
-// ---------------------------------------------------------------------
 #define INA219_ADDR  0x40
 #define MPU6050_ADDR 0x68
 
-// ---------------------------------------------------------------------
-// Globals
-// ---------------------------------------------------------------------
 Adafruit_INA219 ina219(INA219_ADDR);
 MPU6050 mpu(MPU6050_ADDR);
 
@@ -64,9 +32,7 @@ struct DiagResult {
   bool i2c_bus;
 };
 
-// ---------------------------------------------------------------------
-// Utility — print pass/fail
-// ---------------------------------------------------------------------
+// Pass/fail
 void printResult(const char* label, bool passed) {
   Serial.print("  [");
   Serial.print(passed ? "PASS" : "FAIL");
@@ -74,9 +40,7 @@ void printResult(const char* label, bool passed) {
   Serial.println(label);
 }
 
-// ---------------------------------------------------------------------
 // Check 1 — I2C bus scan
-// ---------------------------------------------------------------------
 bool checkI2CBus() {
   Serial.println("\n[1/5] I2C Bus Scan");
   int deviceCount = 0;
@@ -88,14 +52,12 @@ bool checkI2CBus() {
       deviceCount++;
     }
   }
-  bool passed = (deviceCount >= 2);  // expect INA219 + MPU-6050
+  bool passed = (deviceCount >= 2); 
   printResult("I2C bus", passed);
   return passed;
 }
 
-// ---------------------------------------------------------------------
 // Check 2 — Battery voltage and current
-// ---------------------------------------------------------------------
 bool checkBattery(float &voltage_out, float &current_out) {
   Serial.println("\n[2/5] Battery Health");
 
@@ -105,7 +67,7 @@ bool checkBattery(float &voltage_out, float &current_out) {
   }
 
   float voltage = ina219.getBusVoltage_V();
-  float current = ina219.getCurrent_mA() / 1000.0f;  // convert to A
+  float current = ina219.getCurrent_mA() / 1000.0f;  
   float power   = ina219.getPower_mW();
 
   Serial.print("      Voltage: "); Serial.print(voltage, 2); Serial.println(" V");
@@ -124,9 +86,7 @@ bool checkBattery(float &voltage_out, float &current_out) {
   return volt_ok && current_ok;
 }
 
-// ---------------------------------------------------------------------
 // Check 3 — IMU connectivity and data validity
-// ---------------------------------------------------------------------
 bool checkIMU() {
   Serial.println("\n[3/5] IMU Health (MPU-6050)");
 
@@ -139,7 +99,6 @@ bool checkIMU() {
   int16_t ax, ay, az, gx, gy, gz;
   mpu.getMotion6(&ax, &ay, &az, &gx, &gy, &gz);
 
-  // Convert raw to g (±2g range, 16384 LSB/g)
   float ax_g = ax / 16384.0f;
   float ay_g = ay / 16384.0f;
   float az_g = az / 16384.0f;
@@ -149,7 +108,6 @@ bool checkIMU() {
   Serial.print(ay_g, 3); Serial.print(", ");
   Serial.println(az_g, 3);
 
-  // At rest, magnitude should be ~1g
   float mag = sqrt(ax_g*ax_g + ay_g*ay_g + az_g*az_g);
   Serial.print("      Magnitude: "); Serial.print(mag, 3); Serial.println(" g");
 
@@ -159,16 +117,12 @@ bool checkIMU() {
   return data_valid;
 }
 
-// ---------------------------------------------------------------------
 // Check 4 — Motor driver response
-// ---------------------------------------------------------------------
 bool checkMotorDriver() {
   Serial.println("\n[4/5] Motor Driver Response");
 
-  // Measure baseline current
   float baseline_current = ina219.getCurrent_mA() / 1000.0f;
 
-  // Apply brief PWM pulse
   analogWrite(MOTOR_PWM_PIN, MOTOR_PWM_TEST_VAL);
   delay(MOTOR_RESPONSE_DELAY);
   float active_current = ina219.getCurrent_mA() / 1000.0f;
@@ -180,29 +134,21 @@ bool checkMotorDriver() {
   Serial.print("      Active current:   "); Serial.print(active_current,   3); Serial.println(" A");
   Serial.print("      Delta:            "); Serial.print(delta,            3); Serial.println(" A");
 
-  // Expect measurable current increase when PWM is applied
   bool responded = (delta > 0.05f);
   printResult("Motor driver response", responded);
 
   return responded;
 }
 
-// ---------------------------------------------------------------------
-// Check 5 — UART loopback (TX → RX)
-// ---------------------------------------------------------------------
+// Check 5 — UART loopback
 bool checkUART() {
   Serial.println("\n[5/5] UART Check");
-  // On Arduino Nano TX/RX are used for USB serial
-  // We verify the hardware serial is responsive by checking
-  // that Serial is available and can write/read
   bool uart_ok = Serial.availableForWrite() > 0;
   printResult("UART (hardware serial)", uart_ok);
   return uart_ok;
 }
 
-// ---------------------------------------------------------------------
 // Print summary and arm/fault decision
-// ---------------------------------------------------------------------
 void printSummary(DiagResult &r, float voltage, float current) {
   Serial.println("\n=============================");
   Serial.println("    DIAGNOSTICS SUMMARY");
@@ -239,9 +185,7 @@ void printSummary(DiagResult &r, float voltage, float current) {
   Serial.println("=============================\n");
 }
 
-// ---------------------------------------------------------------------
 // Setup — run diagnostics once on power-on
-// ---------------------------------------------------------------------
 void setup() {
   Serial.begin(115200);
   Wire.begin();
@@ -250,7 +194,7 @@ void setup() {
   pinMode(READY_LED_PIN,  OUTPUT);
   pinMode(MOTOR_PWM_PIN,  OUTPUT);
 
-  digitalWrite(STATUS_LED_PIN, HIGH);  // indicate startup
+  digitalWrite(STATUS_LED_PIN, HIGH); 
 
   Serial.println("\n==============================");
   Serial.println("  RC CAR DIAGNOSTICS CONSOLE");
@@ -276,9 +220,7 @@ void setup() {
   digitalWrite(STATUS_LED_PIN, LOW);
 }
 
-// ---------------------------------------------------------------------
 // Loop — continuous IMU monitoring after armed
-// ---------------------------------------------------------------------
 void loop() {
   int16_t ax, ay, az, gx, gy, gz;
   mpu.getMotion6(&ax, &ay, &az, &gx, &gy, &gz);
@@ -293,7 +235,6 @@ void loop() {
   float batt_v = ina219.getBusVoltage_V();
   float batt_a = ina219.getCurrent_mA() / 1000.0f;
 
-  // CSV format for Python logger
   Serial.print(millis()); Serial.print(",");
   Serial.print(batt_v, 3); Serial.print(",");
   Serial.print(batt_a, 3); Serial.print(",");
