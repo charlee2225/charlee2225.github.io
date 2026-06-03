@@ -1,19 +1,3 @@
-"""
-RC Car Pit Crew Diagnostics Console — Serial Logger
-Rutgers University ECE · Sep – Nov 2025
-
-Reads CSV-formatted telemetry from the Arduino Nano over serial
-and saves to a timestamped log file for post-run analysis.
-
-Output columns:
-    timestamp_ms, voltage_V, current_A,
-    accel_x_g, accel_y_g, accel_z_g,
-    gyro_x_ds, gyro_y_ds, gyro_z_ds
-
-Usage:
-    python logger.py --port /dev/ttyUSB0 --output run_001.csv
-"""
-
 import serial
 import csv
 import time
@@ -33,8 +17,8 @@ def main(args):
 
     try:
         ser = serial.Serial(port, BAUD_RATE, timeout=2)
-        time.sleep(2)  # wait for Arduino reset
-        print(f"Connected. Logging to {output}\nPress Ctrl+C to stop.\n")
+        time.sleep(2)  
+        print(f"Connected. Logging to {output}\n")
 
         with open(output, "w", newline="") as f:
             writer = csv.writer(f)
@@ -45,7 +29,6 @@ def main(args):
                 line = ser.readline().decode("utf-8", errors="ignore").strip()
 
                 if not line or line.startswith("=") or line.startswith(" ") or line.startswith("["):
-                    # Print diagnostic header/summary lines to console
                     if line:
                         print(line)
                     continue
