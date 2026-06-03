@@ -1,4 +1,4 @@
-# RailVision — Vegetation Detection
+# RailVision: Vegetation Detection
 
 **Swarm Intelligence Lab**
 
@@ -11,8 +11,8 @@ Binary image classifier that detects vegetation overgrowth on rail tracks for an
 The RailVision drone autonomously inspects rail corridors and flags sections where vegetation encroachment may obstruct the track. This classifier runs onboard a Raspberry Pi 4B, processing saved camera frames and logging results for ground station review.
 
 **Classes:**
-- `clear_track` — track is unobstructed
-- `vegetation` — overgrowth detected, flagged for review
+- `clear_track` = track is unobstructed
+- `vegetation` = overgrowth detected, flagged for review
 
 ---
 
