@@ -1,6 +1,5 @@
 # Camera-Assisted Ball Launch Platform
 
-**Rutgers University ECE**
 January – March 2026
 
 A vision-guided embedded targeting platform that uses OpenCV color segmentation to detect a target and drive pan/tilt servos to center a dual-flywheel ball launcher. Improved targeting accuracy from 56% to 82% across 30 trials through iterative tuning of the vision-guided control loop.
@@ -84,5 +83,3 @@ Install with:
 ```bash
 pip install opencv-python numpy
 ```
-
-`RPi.GPIO` is pre-installed on Raspberry Pi OS.
