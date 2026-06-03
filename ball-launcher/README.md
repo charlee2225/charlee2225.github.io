@@ -27,7 +27,7 @@ Camera → OpenCV Detection → Error Calculation → Servo P-Controller → Pan
 
 | File | Description |
 |------|-------------|
-| `main.py` | Main controller — startup checks, trial loop, data logging |
+| `main.py` | Main controller - startup checks, trial loop, data logging |
 | `vision.py` | OpenCV target detection and error computation |
 | `servo_control.py` | Pan/tilt servo PWM control and self-test sweep |
 
@@ -35,7 +35,7 @@ Camera → OpenCV Detection → Error Calculation → Servo P-Controller → Pan
 
 ## Key Features
 
-**Startup self-test:** Before arming, the system runs a three-point check — servo range sweep, camera availability, and flywheel GPIO validation. The system will not arm if any check fails.
+**Startup self-test:** Before arming, the system runs a three-point check: servo range sweep, camera availability, and flywheel GPIO validation. The system will not arm if any check fails.
 
 **Safety interlocks:** The flywheel only spins up once the target is locked within the deadband. A minimum lock hold time prevents premature firing on transient detections.
 
