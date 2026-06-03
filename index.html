@@ -550,8 +550,6 @@
         <div class="card-title">RC Car Pit Crew Diagnostics Console</div>
         <div class="card-date">Sep &ndash; Nov 2025</div>
       </div>
-      <img class="project-img" src="rccar.png" alt="Custom PCB with ATmega microcontroller, LiPo battery, motor driver, and full wiring harness inside RC car chassis">
-      <div class="img-caption">Custom diagnostics PCB with ATmega microcontroller, motor driver, LiPo battery, and onboard sensors</div>
       <div class="card-body">
         Built an Arduino-based pre-run diagnostics console to validate battery health, motor-driver response, and sensor status before operation. Wrote firmware to sample voltage/current, poll IMU data, and verify UART/I2C device connectivity during startup checks. Detected 8 of 10 injected failure cases before operation using startup diagnostic checks.
         <p class="writeup">This project started as a practical problem: I was tired of discovering mid-run that something was wrong with the car. Building a structured diagnostic console forced me to think carefully about failure modes and how to detect them programmatically before they cause issues. Writing firmware that checks I2C device connectivity, validates IMU data at rest, and measures motor driver current response taught me that reliability engineering is its own discipline. Detecting 8 of 10 injected failure cases was encouraging but the 2 misses were just as instructive. They pointed to edge cases in my voltage threshold logic that I had not anticipated, and that kind of honest evaluation of what your system does and does not catch is something I carry into every project now.</p>
