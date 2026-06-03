@@ -1,6 +1,5 @@
 # RC Car Pit Crew Diagnostics Console
 
-**Rutgers University ECE**
 September – November 2025
 
 An Arduino Nano-based pre-run diagnostics console that validates RC car system health before operation. Runs five structured checks on power-on and arms or locks the system based on results. Detected 8 of 10 injected failure cases before operation during validation testing.
