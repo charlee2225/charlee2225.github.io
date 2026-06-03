@@ -195,6 +195,15 @@
     margin-bottom: 4px;
   }
 
+  .writeup {
+    margin-top: 12px;
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.7;
+    border-top: 1px solid var(--border);
+    padding-top: 12px;
+  }
+
   .tags {
     display: flex;
     flex-wrap: wrap;
@@ -313,6 +322,8 @@
     background: var(--border);
     border-color: #b8b6ae;
   }
+
+  .github-link {
     font-family: var(--mono);
     font-size: 12px;
     color: var(--muted);
@@ -388,7 +399,7 @@
 
   <header>
     <h1 class="name">Charles J. Lee</h1>
-    <p class="tagline">Electrical & Computer Engineering — Rutgers University Honors College</p>
+    <p class="tagline">Electrical &amp; Computer Engineering &mdash; Rutgers University Honors College</p>
     <div class="meta">
       <span>Fort Lee, NJ</span>
       <a href="mailto:charles22lee25@gmail.com">charles22lee25@gmail.com</a>
@@ -419,15 +430,15 @@
     <div class="card">
       <div class="card-top">
         <div class="card-title">Hardware Engineering Intern</div>
-        <div class="card-date">Oct 2024 – May 2025</div>
+        <div class="card-date">Oct 2024 &ndash; May 2025</div>
       </div>
-      <div class="card-org">Swarm Intelligence Lab · RailVision Autonomous Drone Project · New Brunswick, NJ</div>
+      <div class="card-org">Swarm Intelligence Lab &middot; RailVision Autonomous Drone Project &middot; New Brunswick, NJ</div>
       <div class="photo-gallery">
         <img class="gallery-img" src="drone.png" alt="RailVision 4+1 autonomous quadplane with wiring harness and Taranis X7 controller">
         <img class="gallery-img" src="motor.png" alt="Brushless motor and ESC wiring closeup">
         <img class="gallery-img" src="flight.png" alt="RailVision quadplane in flight outdoors on Rutgers campus">
       </div>
-      <div class="img-caption">RailVision quadplane — bench prototype, motor/ESC wiring detail, and outdoor flight test</div>
+      <div class="img-caption">RailVision quadplane &mdash; bench prototype, motor/ESC wiring detail, and outdoor flight test</div>
       <div class="card-body">
         <ul>
           <li>Designed a ResNet-34 vegetation detection model achieving ~97% accuracy for onboard perception on an autonomous quadplane</li>
@@ -436,6 +447,7 @@
           <li>Reduced debug turnaround by 40% through structured oscilloscope and logic analyzer fault isolation</li>
           <li>Created wiring diagrams, validation checklists, and setup instructions across 3 prototype build cycles</li>
         </ul>
+        <p class="writeup">This project pushed me to work across the full stack of an autonomous system simultaneously, from soldering power distribution boards and routing wiring harnesses to training a convolutional neural network and deploying it on flight hardware. The most challenging part was not building any single component but making them all work together reliably. Integrating the perception pipeline with the Pixhawk flight stack required careful timing and interface work, and debugging intermittent I2C faults mid-integration taught me more about structured hardware troubleshooting than any coursework had. By the end I had a flying platform where a model I trained was actively influencing decisions in the air, which was unlike anything I had built before.</p>
       </div>
       <div class="tags">
         <span class="tag">Embedded Systems</span>
@@ -448,16 +460,16 @@
         <span class="tag">ResNet-34</span>
       </div>
       <div style="margin-top: 14px;">
-        <a class="code-btn" href="https://github.com/charlee2225/charlee2225.github.io/tree/main/railsvision" target="_blank">View Code →</a>
+        <a class="code-btn" href="https://github.com/charlee2225/charlee2225.github.io/tree/main/railsvision" target="_blank">View Code &rarr;</a>
       </div>
     </div>
 
     <div class="card">
       <div class="card-top">
         <div class="card-title">Software Engineering Intern</div>
-        <div class="card-date">May 2025 – Aug 2025</div>
+        <div class="card-date">May 2025 &ndash; Aug 2025</div>
       </div>
-      <div class="card-org">AI & Data Science Collaboratory · Machine Learning for Climate Downscaling · Piscataway, NJ</div>
+      <div class="card-org">AI &amp; Data Science Collaboratory &middot; Machine Learning for Climate Downscaling &middot; Piscataway, NJ</div>
       <div class="card-body">
         <ul>
           <li>Built Python/Linux workflows processing 36 years of climate data across 5 Global Climate Models and 6 variables</li>
@@ -465,6 +477,7 @@
           <li>Supported GPU-accelerated training on TACC Frontera HPC cluster</li>
           <li>Benchmarked model outputs using RMSE and MAE comparisons against bilinear interpolation baselines</li>
         </ul>
+        <p class="writeup">Coming into this internship my ML experience was mostly project-based. Working on a real research pipeline at scale changed how I think about software engineering. Processing 36 years of climate data across five global models meant that sloppy code had real consequences, since a poorly structured workflow would take hours longer to run on the HPC cluster. I learned to write Python that was not just functional but repeatable, documented, and efficient under compute constraints. The experience also gave me a much deeper appreciation for evaluation methodology: understanding why RMSE against a bilinear baseline is meaningful, and where a model fails on extreme-event cases, requires thinking carefully about what you are actually measuring and why it matters.</p>
       </div>
       <div class="tags">
         <span class="tag">TensorFlow</span>
@@ -476,16 +489,16 @@
         <span class="tag">HPC</span>
       </div>
       <div style="margin-top: 14px;">
-        <a class="code-btn" href="https://github.com/charlee2225/charlee2225.github.io/tree/main/climate-downscaling" target="_blank">View Code →</a>
+        <a class="code-btn" href="https://github.com/charlee2225/charlee2225.github.io/tree/main/climate-downscaling" target="_blank">View Code &rarr;</a>
       </div>
     </div>
 
     <div class="card">
       <div class="card-top">
         <div class="card-title">Electronics Lab Technician</div>
-        <div class="card-date">Sep 2023 – May 2025</div>
+        <div class="card-date">Sep 2023 &ndash; May 2025</div>
       </div>
-      <div class="card-org">Rutgers ECE Department · Piscataway, NJ</div>
+      <div class="card-org">Rutgers ECE Department &middot; Piscataway, NJ</div>
       <div class="card-body">
         <ul>
           <li>Supported 4 semesters of electronics labs assisting 20+ students with bench setup and circuit debugging</li>
@@ -507,12 +520,13 @@
     <div class="card">
       <div class="card-top">
         <div class="card-title">Camera-Assisted Ball Launch Platform</div>
-        <div class="card-date">Jan – Mar 2026</div>
+        <div class="card-date">Jan &ndash; Mar 2026</div>
       </div>
       <img class="project-img" src="launcher.png" alt="Dual flywheel ball launcher with 3D printed housing, servo mechanism, and breadboard controller">
       <div class="img-caption">Dual flywheel launcher with servo actuation, 3D printed housing, and microcontroller wiring</div>
       <div class="card-body">
         Developed a vision-guided embedded targeting platform with servo actuation, startup self-tests, and safety interlocks for repeatable system validation. Improved targeting accuracy from 56% to 82% across 30 trials through iterative tuning of vision-guided control loops. Added diagnostics for startup faults, actuator current behavior, and targeting latency.
+        <p class="writeup">I built this project to practice closing the loop between perception and physical actuation, something I had done at a higher level on the drone but wanted to own completely from scratch. Designing the startup self-test and safety interlock logic was one of the most satisfying parts. Before this project I would have just written the targeting loop and called it done. Thinking through what could go wrong on power-on, what faults needed to block operation, and how to log behavior across repeated trials pushed me to think like a systems engineer rather than just a programmer. The accuracy improvement from 56% to 82% came entirely from iterating on proportional gain tuning and deadband threshold, which taught me how sensitive real physical systems are to parameters that look simple on paper.</p>
       </div>
       <div class="tags">
         <span class="tag">Computer Vision</span>
@@ -522,17 +536,20 @@
         <span class="tag">Python</span>
       </div>
       <div style="margin-top: 14px;">
-        <a class="code-btn" href="https://github.com/charlee2225/charlee2225.github.io/tree/main/ball-launcher" target="_blank">View Code →</a>
+        <a class="code-btn" href="https://github.com/charlee2225/charlee2225.github.io/tree/main/ball-launcher" target="_blank">View Code &rarr;</a>
       </div>
     </div>
 
     <div class="card">
       <div class="card-top">
         <div class="card-title">RC Car Pit Crew Diagnostics Console</div>
-        <div class="card-date">Sep – Nov 2025</div>
+        <div class="card-date">Sep &ndash; Nov 2025</div>
       </div>
+      <img class="project-img" src="rccar.png" alt="Custom PCB with ATmega microcontroller, LiPo battery, motor driver, and full wiring harness inside RC car chassis">
+      <div class="img-caption">Custom diagnostics PCB with ATmega microcontroller, motor driver, LiPo battery, and onboard sensors</div>
       <div class="card-body">
         Built an Arduino-based pre-run diagnostics console to validate battery health, motor-driver response, and sensor status before operation. Wrote firmware to sample voltage/current, poll IMU data, and verify UART/I2C device connectivity during startup checks. Detected 8 of 10 injected failure cases before operation using startup diagnostic checks.
+        <p class="writeup">This project started as a practical problem: I was tired of discovering mid-run that something was wrong with the car. Building a structured diagnostic console forced me to think carefully about failure modes and how to detect them programmatically before they cause issues. Writing firmware that checks I2C device connectivity, validates IMU data at rest, and measures motor driver current response taught me that reliability engineering is its own discipline. Detecting 8 of 10 injected failure cases was encouraging but the 2 misses were just as instructive. They pointed to edge cases in my voltage threshold logic that I had not anticipated, and that kind of honest evaluation of what your system does and does not catch is something I carry into every project now.</p>
       </div>
       <div class="tags">
         <span class="tag">Arduino</span>
@@ -542,7 +559,7 @@
         <span class="tag">Python Logging</span>
       </div>
       <div style="margin-top: 14px;">
-        <a class="code-btn" href="https://github.com/charlee2225/charlee2225.github.io/tree/main/rc-diagnostics" target="_blank">View Code →</a>
+        <a class="code-btn" href="https://github.com/charlee2225/charlee2225.github.io/tree/main/rc-diagnostics" target="_blank">View Code &rarr;</a>
       </div>
     </div>
   </section>
@@ -551,20 +568,20 @@
     <div class="section-heading">Skills</div>
     <div class="skills-grid">
       <div class="skill-card">
-        <div class="skill-cat">Autonomy & AI</div>
-        <div class="skill-list">Computer vision · TensorFlow<br>ResNet · Real-time inference<br>NumPy · Scikit-learn · Matplotlib<br>ArduPilot / Pixhawk<br>HPC workflows</div>
+        <div class="skill-cat">Autonomy &amp; AI</div>
+        <div class="skill-list">Computer vision &middot; TensorFlow<br>ResNet &middot; Real-time inference<br>NumPy &middot; Scikit-learn &middot; Matplotlib<br>ArduPilot / Pixhawk<br>HPC workflows</div>
       </div>
       <div class="skill-card">
         <div class="skill-cat">Embedded / Hardware</div>
-        <div class="skill-list">Raspberry Pi · Arduino<br>PCB design · KiCad · LTspice<br>UART / I2C / SPI validation<br>Sensor bring-up · Wiring<br>Soldering / rework</div>
+        <div class="skill-list">Raspberry Pi &middot; Arduino<br>PCB design &middot; KiCad &middot; LTspice<br>UART / I2C / SPI validation<br>Sensor bring-up &middot; Wiring<br>Soldering / rework</div>
       </div>
       <div class="skill-card">
-        <div class="skill-cat">Test & Debug</div>
-        <div class="skill-list">Oscilloscope · Logic analyzer<br>DMM · Bench power supplies<br>Structured bring-up<br>Fault isolation<br>Serial logging</div>
+        <div class="skill-cat">Test &amp; Debug</div>
+        <div class="skill-list">Oscilloscope &middot; Logic analyzer<br>DMM &middot; Bench power supplies<br>Structured bring-up<br>Fault isolation<br>Serial logging</div>
       </div>
       <div class="skill-card">
         <div class="skill-cat">Programming / Tools</div>
-        <div class="skill-list">Python · C/C++ · MATLAB<br>Linux · Git · Java<br>AutoCAD · SolidWorks<br>Microsoft Office<br>KiCad · LTspice</div>
+        <div class="skill-list">Python &middot; C/C++ &middot; MATLAB<br>Linux &middot; Git &middot; Java<br>AutoCAD &middot; SolidWorks<br>Microsoft Office<br>KiCad &middot; LTspice</div>
       </div>
     </div>
   </section>
@@ -572,10 +589,10 @@
   <section>
     <div class="section-heading">Education</div>
     <div class="edu-card">
-      <div class="edu-school">Rutgers University — Honors College</div>
-      <div class="edu-degree">B.S. Electrical and Computer Engineering · Minor in Computer Science · May 2027</div>
-      <div class="edu-detail">GPA 3.86 &nbsp;·&nbsp; Dean's List all semesters</div>
-      <div class="coursework">Linear Systems & Signals · Digital Signal Processing · Digital Electronics · Electronic Devices · Digital Logic Design · Computer Architecture & Assembly · Data Structures · Artificial Intelligence · Principles of EE I–II</div>
+      <div class="edu-school">Rutgers University &mdash; Honors College</div>
+      <div class="edu-degree">B.S. Electrical and Computer Engineering &middot; Minor in Computer Science &middot; May 2027</div>
+      <div class="edu-detail">GPA 3.86 &nbsp;&middot;&nbsp; Dean's List all semesters</div>
+      <div class="coursework">Linear Systems &amp; Signals &middot; Digital Signal Processing &middot; Digital Electronics &middot; Electronic Devices &middot; Digital Logic Design &middot; Computer Architecture &amp; Assembly &middot; Data Structures &middot; Artificial Intelligence &middot; Principles of EE I&ndash;II</div>
     </div>
   </section>
 
@@ -589,7 +606,7 @@
   </section>
 
   <footer>
-    <span>Charles J. Lee · ECE Portfolio</span>
+    <span>Charles J. Lee &middot; ECE Portfolio</span>
     <a class="github-link" href="https://github.com/charlee2225" target="_blank">github.com/charlee2225</a>
   </footer>
 
